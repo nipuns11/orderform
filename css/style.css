@@ -1,0 +1,62 @@
+html { 
+
+  margin: 20px;
+  padding: 10px;
+  border: 15px;
+ 
+} 
+
+body { 
+ 
+  color: black;
+  border:3px solid black;
+  width:400px;
+  margin-right:auto;
+  margin-left:auto;	
+  
+ 
+} 
+table,h2 {
+	background-color: #d8da3d;
+	margin:5px;
+	padding:5px;
+	
+	
+}
+th{
+	color:blue;
+	margin:5px;
+	padding:5px;
+}
+
+td {
+	padding:3px;
+	margin:3px;
+	padding:3px;
+	color:black;
+	
+}
+
+
+input#firstName ,input#lastName, input#address,input#city, select#province,input#postalCode {
+	border:2px solid green;
+	margin:2px;
+	padding:2px;
+	
+}
+input#widget1qty,input#widget2qty,input#widget3qty {
+	border:2px solid blue;
+	margin:2px;
+	padding:2px;
+}
+
+input#btnSubmit,input#btnReset{
+	
+	margin-right:auto;
+	margin-left:auto;	
+	padding:1px;
+	display:block;
+	
+}
+
+

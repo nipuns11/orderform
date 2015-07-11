@@ -1,0 +1,213 @@
+<!DOCTYPE html>
+<html>
+    <head>
+        <title>Order Form</title>
+        <meta charset="utf-8">
+		<link href="css/style.css" rel="stylesheet">
+		<script type="text/javascript">
+		function validateForm(){
+		 var fn = document.orderForm.firstName.value; 
+		 if (fn==null || fn=="")
+		{
+		 alert( "Please provide your first name!" );
+		 document.orderForm.firstName.focus() ;
+		 return false;
+		}
+		 var ln = document.orderForm.lastName.value; 
+		 if (ln==null || ln=="")
+		{
+		 alert( "Please provide your last name!" );
+		 document.orderForm.lastName.focus() ;
+		 return false;
+		}
+		var add = document.orderForm.address.value; 
+		 if (add ==null || add=="")
+		{
+		 alert( "Please provide your address!" );
+		 document.orderForm.address.focus();
+		 return false;
+		}
+		var ct = document.orderForm.city.value; 
+		 if (ct==null || ct=="")
+		{
+		 alert( "Please provide your city!" );
+		  document.orderForm.city.focus();
+		 return false;
+		}
+		var pr = document.orderForm.province.value; 
+		 if (pr =="0")
+		{
+		 alert( "Please Select the province!" );
+		 return false;
+		}	
+		var min=6;
+		if (orderForm.postalCode.value.length < min) {
+		alert("Please enter a 6-digit postcode");
+		document.orderForm.postalCode.focus();
+		return false;
+		}
+		var widg1 = document.orderForm.widget1qty.value; 
+		if (isNaN(parseFloat(widg1))){ 
+			do 
+			{ 
+				widg1 = prompt("You did not enter a number. Please enter a number.")
+				document.orderForm.widget1qty.value =widg1;
+			}while (isNaN(parseFloat(widg1))); 
+		
+		} 
+		var widg2 = document.orderForm.widget2qty.value;
+		if (isNaN(parseFloat(widg2))){ 
+			do 
+			{ 
+				widg2 = prompt("You did not enter a number. Please enter a number.")
+				document.orderForm.widget2qty.value =widg2;
+			}while (isNaN(parseFloat(widg2))); 
+		
+		}
+		var widg3 = document.orderForm.widget3qty.value;
+		if (isNaN(parseFloat(widg3))){ 
+			do 
+			{ 
+				widg3 = prompt("You did not enter a number. Please enter a number.")
+				document.orderForm.widget3qty.value =widg3;
+			}while (isNaN(parseFloat(widg3))); 
+		
+		}
+		var sum = widg1*5 + widg2*15 + widg3*25;
+		
+		 if ( (widg1 <= "0") &&(widg2 <= "0") && (widg3 <= "0"))
+		{
+		 alert( "Please Select atleast one product" );
+		 document.orderForm.widget1qty.focus();
+			
+		return false;
+		}
+		
+		var r1 = document.getElementById('shippingTypeStandard');
+		var r2 = document.getElementById('shippingTypeExpress');
+		var r3 = document.getElementById('shippingTypeOvernight');
+		if ( (r1.checked == false ) && (r2.checked == false ) && (r3.checked == false))
+		{
+		alert ( "Please choose Shipping Type:" );
+		document.orderForm.shippingTypeExpress.focus();
+		return false;
+		}
+		
+		if( (r1.checked == true ) && (r2.checked == false ) && (r3.checked == false))
+		{
+		alert ( "The cost of the Order is " + sum );
+		var sum1 = sum + 5;
+		alert ( "The total cost of the Order plus shipping is " + sum1 );
+		}
+		if ( (r1.checked == false ) && (r2.checked == true ) && (r3.checked == false)){
+		alert ( "The cost of the Order is " + sum );
+		var sum2 = sum + 10;
+		alert ( "The total cost of the Order plus shipping is " + sum2 );
+		}
+		if ( (r1.checked == false ) && (r2.checked == false ) && (r3.checked == true)){
+		alert ( "The cost of the Order is " + sum1 );
+		var sum3 = sum + 20;
+		alert (  " The total of the Order cost plus shipping is " + sum3 );
+		}
+		
+		return true;
+		
+		}
+	</script>
+        
+    </head>
+    <body>
+		
+		<header>
+        <h2>Order Form</h2>
+		</header>
+		
+        <form name="orderForm" id="orderForm" method="post" action="processForm.php" onsubmit = "return validateForm();">
+		
+        <table>
+            <tr>
+                <th colspan="2">Personal Information</th>
+            </tr>
+            <tr>
+                <td>First Name:</td>
+                <td><input type="text" name="firstName" id="firstName" size="30"></td>
+            </tr>
+            <tr>
+                <td>Last Name:</td>
+                <td><input type="text" name="lastName" id="lastName" size="30"></td>
+            </tr>
+            <tr>
+                <td>Address:</td>
+                <td><input type="text" name="address" id="address" size="30"></td>
+            </tr>
+            <tr>
+                <td>City:</td>
+                <td><input type="text" name="city" id="city" size="30"></td>
+            </tr>
+            <tr>
+                <td>Province:</td>
+                <td><select name="province" id="province" size="1">
+                        <option value ="0">Select a province</option>
+                        <option value="BC">British Columbia</option>
+                        <option value="AB">Alberta</option>
+                        <option value="SK">Saskatchewan</option>
+                        <option value="MB">Manitoba</option>
+                        <option value="ON">Ontario</option>
+                        <option value="QC">Québec</option>
+                        <option value="NB">New Brunswick</option>
+                        <option value="NS">Nova Scotia</option>
+                        <option value="PE">Prince Edward Island</option>
+                        <option value="NF">Newfoundland</option>
+                        <option value="YK">Yukon</option>
+                        <option value="NWT">Northwest Territories</option>
+                        <option value="NU">Nunavut</option>
+                    </select>
+                </td>
+            </tr>
+            <tr>
+                <td>Postal Code:</td>
+                <td><input type="text" name="postalCode" id="postalCode" maxlength="6"></td>
+            </tr>
+			
+            <tr>
+                <th colspan="2">Order Information</th>
+            </tr>
+            <tr>
+                <td rowspan="3">Select your products:<br>
+                    <span id="productError" class="errorMessage" hidden></span></td>
+                <td>Widget #1&nbsp;
+                    <input type="text" name="widget1qty" id="widget1qty" size="1" value="0">Qty @ <strong>$5.00/ea</strong></td>
+            </tr>
+            <tr>
+                <td>Widget #2&nbsp;
+                    <input type="text" name="widget2qty" id="widget2qty" size="1" value="0">Qty @ <strong>$15.00/ea</strong></td>
+            </tr>
+            <tr>
+                <td>Widget #3&nbsp;
+                    <input type="text" name="widget3qty" id="widget3qty" size="1" value="0">Qty @ <strong>$25.00/ea</strong></td>
+            </tr>
+            <tr>
+                <td rowspan="3">Shipping Type:</td>
+                <td>Standard ($5.00)<input type="radio" name="shippingType" id="shippingTypeStandard" value="Standard"></td>
+
+            </tr>
+            <tr>
+                <td>Express ($10.00)<input type="radio" name="shippingType" id="shippingTypeExpress" value="Express"></td>
+            </tr>
+            <tr>
+                <td>Overnight ($20.00)<input type="radio" name="shippingType" id="shippingTypeOvernight" value="Overnight"></td>
+            </tr>
+			
+            <tr>
+                <th colspan="2">Submit Order</th>
+            </tr>
+            <tr>
+                <td><input type="submit" name="btnSubmit" id="btnSubmit" value="Submit Order"></td>
+                <td><input type="reset" name="btnReset" id="btnReset" value="Reset Form"></td>
+            </tr>
+			
+        </table>
+        </form>
+		
+    </body>
+</html>
