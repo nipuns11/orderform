@@ -1,7 +1,7 @@
 <!DOCTYPE html>
 <html>
     <head>
-        <title>Week 8 Lab - JavaScript DOM and Arrays</title>
+        <title>Order Form</title>
         <meta charset="utf-8">
 	</head>
 	<body>
